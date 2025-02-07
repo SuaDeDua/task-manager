@@ -1,6 +1,12 @@
+"use client"
+
+import { SignUpCard } from "@/features/auth/components/sign-up-card"
+
 const SignUpPage = () => {
   return (
-    <div>SignUpPage</div>
+    <div>
+      <SignUpCard/>
+    </div>
   )
 }
 
