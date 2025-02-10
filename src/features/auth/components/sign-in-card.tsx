@@ -15,10 +15,11 @@ import {
   FormItem,
   FormMessage,
 } from '@/components/ui/form';
+import Link from 'next/link';
 
 const formSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(8, "Minimum 8 characters"),
+  password: z.string().min(1, 'Required'),
 });
 
 export const SignInCard = () => {
@@ -31,8 +32,8 @@ export const SignInCard = () => {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log({ values })
-  }
+    console.log({ values });
+  };
 
   return (
     <Card className="w-full h-full md:w-[487px] border-none shadow-none">
@@ -103,6 +104,17 @@ export const SignInCard = () => {
           <FaGithub className="mr-2 size-5" />
           Login with Github
         </Button>
+      </CardContent>
+      <div className="px-7">
+        <DottedSeparator />
+      </div>
+      <CardContent className="p-7 flex items-center justify-center">
+        <p>
+          Already have an account?
+          <Link href="/sign-up">
+            <span className="text-blue-700">&nbsp;Sign Up</span>
+          </Link>
+        </p>
       </CardContent>
     </Card>
   );
