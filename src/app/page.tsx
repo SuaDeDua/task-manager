@@ -1,8 +1,11 @@
 import { Button } from '@/components/ui/button';
 
+import { createAdminClient } from '@/lib/appwrite';
+
 export default function Home() {
+  console.log(createAdminClient, 'hello');
   return (
-    <div className=''>
+    <div className="">
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="destructive">Destructive</Button>
