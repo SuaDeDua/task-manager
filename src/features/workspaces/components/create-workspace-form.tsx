@@ -46,7 +46,12 @@ export const CreateWorkspaceFrom = ({ onCancel }: CreateWorkspaceFormProps) => {
       image: values.image instanceof File ? values.image : ""
     }
 
-    mutate({ form: finalValues})
+    mutate({ form: finalValues}, {
+      onSuccess: () => {
+        form.reset()
+        // TODO: Redirect to new workspace
+      }
+    })
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
