@@ -18,7 +18,7 @@ export const getMember = async ({
     MEMBERS_ID,
     [
       Query.equal("workspaceId", workspaceId),
-      Query.equal("userId", userId)
+      Query.equal("userId", userId),
     ]
   )
 
