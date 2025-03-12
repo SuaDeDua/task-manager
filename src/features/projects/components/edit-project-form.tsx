@@ -25,43 +25,36 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
-import { updateWorkspaceSchema } from "../schemas";
-import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Workspace } from "../types";
-import { useUpdateWorkspace } from "../api/use-update-workspace";
-import { useConfirm } from "@/hooks/use-confirm";
-import { useDeleteWorkspace } from "../api/use-delete-workspace";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useResetInviteCode } from "../api/use-reset-invite-code";
+import { useConfirm } from "@/hooks/use-confirm";
 
-interface EditWorkspaceFormProps {
+import { Project } from "../types";
+import { updateProjectSchema } from "../schemas";
+import { useUpdateProject } from "../api/use-update-project";
+
+interface EditProjectFormProps {
   onCancel?: () => void;
-  initialValues: Workspace;
+  initialValues: Project;
 }
 
-export const EditWorkspaceForm = ({
+export const EditProjectForm = ({
   onCancel,
   initialValues,
-}: EditWorkspaceFormProps) => {
+}: EditProjectFormProps) => {
   const router = useRouter();
-  const { mutate, isPending } = useUpdateWorkspace();
-  const { mutate: deleteWorkspace, isPending: isDeletingWorkspace } =
-    useDeleteWorkspace();
-  const { mutate: resetInviteCode, isPending: isResettingInviteCode } =
-    useResetInviteCode();
+  const { mutate, isPending } = useUpdateProject();
+  // const { mutate: deleteWorkspace, isPending: isDeletingWorkspace } =
+  //   useDeleteWorkspace();
+
 
   const [DeleteDialog, confirmDelete] = useConfirm(
     "Delete Workspace",
     "This action cannot be undone.",
     "destructive"
   );
-  const [ResetDialog, confirmReset] = useConfirm(
-    "Reset invite link",
-    "This will invalidate the current invite link.",
-    "destructive"
-  );
+
 
   const inputRef = useRef<HTMLInputElement>(null);
 
