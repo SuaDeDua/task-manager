@@ -1,11 +1,14 @@
-import { sessionMiddleware } from "@/lib/session-middleware";
-import { zValidator } from "@hono/zod-validator";
-import { Hono } from "hono";
-import { createTaskSchema } from "../schemas";
-import { getMember } from "@/features/members/utils";
-import { DATABASE_ID, MEMBERS_ID, PROJECTS_ID, TASKS_ID } from "@/config";
-import { ID, Query } from "node-appwrite";
 import { z } from "zod";
+import { Hono } from "hono";
+import { ID, Query } from "node-appwrite";
+import { zValidator } from "@hono/zod-validator";
+
+import { getMember } from "@/features/members/utils";
+
+import { DATABASE_ID, MEMBERS_ID, PROJECTS_ID, TASKS_ID } from "@/config";
+import { sessionMiddleware } from "@/lib/session-middleware";
+
+import { createTaskSchema } from "../schemas";
 import { TaskStatus } from "../types";
 import { createAdminClient } from "@/lib/appwrite";
 import { Project } from "@/features/projects/types";
@@ -20,7 +23,7 @@ const app = new Hono()
         workspaceId: z.string(),
         projectId: z.string().nullish(),
         assigneeId: z.string().nullish(),
-        status: z.nativeEnum(TaskStatus),
+        status: z.nativeEnum(TaskStatus).nullish(),
         search: z.string().nullish(),
         dueDate: z.string().nullish(),
       })

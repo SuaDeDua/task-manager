@@ -21,36 +21,34 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import { createProjectSchema } from "../schemas";
-import { useCreateProject } from "../api/use-create-project";
+import { createTaskSchema } from "../schemas";
+import { useCreateTask } from "../api/use-create-project";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 
-interface CreateProjectFormProps {
+interface CreateTaskFormProps {
   onCancel?: () => void;
+  projectOptions: {id: string, name: string, imageUrl: string}[]
+  memberOptions: {id: string, name: string}[]
 }
 
-export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
+export const CreateProjectForm = ({ onCancel, projectOptions, memberOptions}: CreateTaskFormProps) => {
   const workspaceId = useWorkspaceId();
   const router = useRouter();
-  const { mutate, isPending } = useCreateProject();
+  const { mutate, isPending } = useCreateTask();
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const form = useForm<z.infer<typeof createProjectSchema>>({
-    resolver: zodResolver(createProjectSchema.omit({ workspaceId: true })),
+  const form = useForm<z.infer<typeof createTaskSchema>>({
+    resolver: zodResolver(createTaskSchema.omit({ workspaceId: true })),
     defaultValues: {
-      name: "",
+      workspaceId
     },
   });
 
-  const onSubmit = (values: z.infer<typeof createProjectSchema>) => {
-    const finalValues = {
-      ...values,
-      workspaceId,
-      image: values.image instanceof File ? values.image : "",
-    };
+  const onSubmit = (values: z.infer<typeof createTaskSchema>) => {
+
 
     mutate(
       { form: finalValues },
