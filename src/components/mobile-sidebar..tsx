@@ -8,12 +8,12 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 export const MobileSidebar = () => {
-const [isOpen, setIsOpen] = useState(false);
-const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
-useEffect(()=>{
-  setIsOpen(false)
-}, [pathname])
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <Sheet modal={false} open={isOpen} onOpenChange={setIsOpen}>
