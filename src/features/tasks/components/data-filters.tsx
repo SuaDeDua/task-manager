@@ -86,7 +86,7 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
         <SelectTrigger className="w-full lg:w-auto h-8">
           <div className="flex items-center pr-2">
             <UserIcon className="size-4 mr-2" />
-            <SelectValue placeholder="All statuses" />
+            <SelectValue placeholder="All assignees" />
           </div>
         </SelectTrigger>
         <SelectContent>

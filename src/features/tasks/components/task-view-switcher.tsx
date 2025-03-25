@@ -10,18 +10,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { DataFilters } from "./data-filters";
 
+import { columns } from "./columns";
+import { DataTable } from "./data-table";
+
 import { useGetTasks } from "@/features/tasks/api/use-get-tasks";
 import { useCreateTaskModal } from "../hooks/use-create-task-modal";
 import { useQueryState } from "nuqs";
 import { useTaskFilters } from "../hooks/use-task-filters";
 
 export const TaskViewSwitcher = () => {
-  const [{
-    status,
-    assigneeId,
-    projectId,
-    dueDate
-  }] = useTaskFilters()
+  const [{ status, assigneeId, projectId, dueDate }] = useTaskFilters();
   const [view, setView] = useQueryState("task-view", {
     defaultValue: "table",
   });
@@ -34,7 +32,7 @@ export const TaskViewSwitcher = () => {
     projectId,
     assigneeId,
     status,
-    dueDate
+    dueDate,
   });
 
   return (
@@ -61,16 +59,16 @@ export const TaskViewSwitcher = () => {
           </Button>
         </div>
         <DottedSeparator className="my-4" />
-          <DataFilters/>
+        <DataFilters />
         <DottedSeparator className="my-4" />
         {isLoadingTasks ? (
           <div className="w-full border rounded-lg h-[200px] flex flex-col items-center justify-center">
-            <Loader className="size-5 animate-spin text-muted-foreground"/>
+            <Loader className="size-5 animate-spin text-muted-foreground" />
           </div>
         ) : (
           <>
             <TabsContent value="table" className="mt-0">
-              {JSON.stringify(tasks)}
+              <DataTable columns={columns} data={tasks?.documents ?? []} />
             </TabsContent>
             <TabsContent value="kanban" className="mt-0">
               {JSON.stringify(tasks)}
