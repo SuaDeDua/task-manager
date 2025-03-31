@@ -236,7 +236,7 @@ const app = new Hono()
       const task = await databases.updateDocument<Task>(
         DATABASE_ID,
         TASKS_ID,
-        ID.unique(),
+        taskId,
         {
           name,
           status,

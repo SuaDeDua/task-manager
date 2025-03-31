@@ -79,7 +79,7 @@ export const EditTaskForm = ({
   return (
     <Card className="w-full h-full border-none shadow-none">
       <CardHeader className="flex p-7">
-        <CardTitle className="text-xl font-bold">Create a new task</CardTitle>
+        <CardTitle className="text-xl font-bold">Edit a task</CardTitle>
       </CardHeader>
       <div className="px-7">
         <DottedSeparator />
@@ -227,9 +227,7 @@ export const EditTaskForm = ({
                 className={cn(!onCancel && "invisible")}>
                 Cancel
               </Button>
-              <Button type="submit" size="lg" disabled={isPending}>
-                Create Task
-              </Button>
+              <Button type="submit" size="lg" disabled={isPending}>Save Changes</Button>
             </div>
           </form>
         </Form>
