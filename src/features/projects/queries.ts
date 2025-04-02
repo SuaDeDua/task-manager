@@ -25,9 +25,9 @@ export const getProject = async ({ projectId }: GetProjectProps) => {
     workspaceId: project.workspaceId,
   });
 
-  if (!member) {
-    throw new Error("Unauthorized")
-  }
+if(!member){
+  throw new Error("Unauthorized");
+}
 
   return project;
 };
