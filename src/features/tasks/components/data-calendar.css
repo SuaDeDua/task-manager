@@ -21,3 +21,16 @@
   @apply border-t;
   @apply border-x;
 }
+
+:not(.rbc-month-row ~ .rbc-month-row).rbc-month-row {
+  @apply rounded-t-md
+}
+
+.rbc-month-row:last-of-type{
+  @apply border-b;
+  @apply rounded-b-md;
+}
+
+.rbc-month-view{
+  @apply border-none
+}
