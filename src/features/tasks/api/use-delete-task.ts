@@ -14,7 +14,6 @@ type RequestType = InferRequestType<
 >;
 
 export const useDeleteTask = () => {
-  const router = useRouter()
   const queryClient = useQueryClient();
 
   const mutation = useMutation<ResponseType, Error, RequestType>({
@@ -29,7 +28,6 @@ export const useDeleteTask = () => {
     },
     onSuccess: ({data}) => {
       toast.success("Task deleted successfully");
-      router.refresh()
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       queryClient.invalidateQueries({ queryKey: ["task", data.$id] });
     },

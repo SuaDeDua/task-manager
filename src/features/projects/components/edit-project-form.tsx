@@ -89,11 +89,11 @@ export const EditProjectForm = ({
 
     mutate(
       { form: finalValues, param: { projectId: initialValues.$id } },
-      {
-        onSuccess: () => {
-          window.location.href = `/workspaces/${initialValues.workspaceId}/projects/${initialValues.$id}`;
-        },
-      }
+      // {
+      //   onSuccess: () => {
+      //     window.location.href = `/workspaces/${initialValues.workspaceId}/projects/${initialValues.$id}`;
+      //   },
+      // }
     );
   };
 
